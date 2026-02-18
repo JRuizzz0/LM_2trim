@@ -1,0 +1,83 @@
+button,
+label,
+input,
+select{
+    display: block;
+    margin-bottom: 15px;
+}
+
+
+body{
+    font-family: Arial;
+    margin: 50px;
+    background-color: rgb(200, 230, 230);
+}
+
+h1{
+    color: blueviolet;
+}
+
+button[id="cargar"]{
+    padding: 8px;
+    background-color: pink;
+    color: rgb(146, 143, 143);
+    border: none;
+    border-radius: 60px;
+}
+
+input[type="text"]{
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 60px;
+}
+
+select[id="select"]{
+    padding: 10px;
+    border-radius: 60px;
+}
+
+button:hover{
+    opacity: 0.7;
+
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
+input:focus,
+select:focus{
+    outline: 4px solid rgb(252, 146, 163);
+}
+
+div[data-tarea]{
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px; 
+    border-radius: 40px;
+}
+
+div[data-status="hecha"]{
+    background-color: beige;
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
+div[data-prioridad="Alta"]{
+    border-left: red;
+}
+
+div[data-prioridad="Media"]{
+    border-left: gold;
+}
+
+div[data-prioridad="Baja"]{
+    border-left: rgb(43, 163, 43);
+}
+
+button[id="hecha"]{
+    padding: 6px;
+    background-color: chocolate;
+    color: white;
+    margin-top: 10px;
+}

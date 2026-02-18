@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<partidos>
+    
+    <partido>
+        <nombre>VOX</nombre>
+    </partido>
+
+     <partido>
+        <nombre>PSOETA</nombre>
+    </partido>
+
+     <partido>
+        <nombre>SUMAR</nombre>
+    </partido>
+
+     <partido>
+        <nombre>PP</nombre>
+    </partido>
+    
+</partidos>

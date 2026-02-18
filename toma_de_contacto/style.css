@@ -1,0 +1,43 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: #e21515;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: gold;
+            text-align: center;
+        }
+        p {
+            padding: 25%;
+            color: red;
+            width: 50%;
+            text-align: center;
+            border-style: ridge;
+            border-color: gold;
+            background-color: gold;
+        }
+
+        ul {
+            list-style-type: square ;
+            padding-left: 20px;
+        }
+
+        li {
+            color: #e4e4e4;
+            font-style: italic;
+
+        }
+
+        li:hover {
+            color: gold;
+            cursor: pointer;
+        }
+
+
+        img {
+            max-width: 40px;
+        }
+        

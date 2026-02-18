@@ -1,0 +1,48 @@
+body{
+    background-color: cadetblue;
+    font-family: Tahoma;
+    margin: 20px;
+}
+
+h1{
+    color:blanchedalmond;
+    font-family: New Roman;
+    
+}
+
+button{
+    background-color: aqua;
+    padding: 10px;
+    margin-right: 200px;
+    margin-left: 95px;
+}
+
+button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
+hr{
+    border:none;
+    border-top: 2px solid black;
+}
+
+
+div[data-party]{
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+
+}
+
+div[data-win="true"]{
+    background-color: green;
+}
+
+

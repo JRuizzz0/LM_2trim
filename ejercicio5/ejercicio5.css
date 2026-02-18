@@ -1,0 +1,48 @@
+body{
+    background-color: burlywood;
+    font-family: Arial;
+    margin: 20px;
+}
+
+h1{
+    color: rgb(75,74,74);
+}
+
+div[data-product]{
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: antiquewhite;
+
+}
+
+div[data-category="ropa"]{
+    border-left: 5px solid red;
+}
+
+div[data-category="tecnologia"]{
+    border-left: 5px solid blue;
+}
+
+div[data-category="hogar"]{
+    border-left: 5px solid green;
+}
+
+div[data-fav="true"]{
+    background-color: crimson;
+}
+
+button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
+hr{
+    border:none;
+    border-top: 2px solid black;
+}
