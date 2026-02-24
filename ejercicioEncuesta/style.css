@@ -6,8 +6,7 @@ body{
 
 h1{
     color:blanchedalmond;
-    font-family: New Roman;
-    
+    font-family: "Times New Roman", Times, serif;
 }
 
 button{
@@ -15,6 +14,8 @@ button{
     padding: 10px;
     margin-right: 200px;
     margin-left: 95px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 button:hover{
@@ -31,18 +32,34 @@ hr{
     border-top: 2px solid black;
 }
 
-
 div[data-party]{
     border: 1px solid black;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: antiquewhite;
-
+    display: flex; /* Para alinear bonito */
+    align-items: center;
+    justify-content: space-between;
 }
 
 div[data-win="true"]{
-    background-color: green;
+    background-color: lightgreen;
 }
 
 
+.bloqueado {
+    pointer-events: none;
+    opacity: 0.6; 
+}
+
+#modalCerrar {
+    display: none; 
+    background-color: #fff8dc;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
