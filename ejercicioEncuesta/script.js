@@ -2,8 +2,12 @@ const btnCerrar = document.getElementById("cerrar");
 const btnReiniciar = document.getElementById("reiniciar");
 const contPartidos = document.getElementById("partidos");
 const ganador = document.getElementById("ganador");
+const contador = document.getElementById("contadorTotal");
+const modalCerrar = document.getElementById("modalCerrar");
 
 let contadorTotal = 0;
+let maxVotosGlobal = 0;
+let ganadorNombreGlobal = "Ninguno";
 
 fetch("galeria.xml")
   .then((response) => response.text())
@@ -16,9 +20,9 @@ fetch("galeria.xml")
       const nombre = partido.getElementsByTagName("nombre")[0].textContent;
       contPartidos.innerHTML += `
         <div data-party data-votos="0" data-win="false">
-          <p>${nombre}</p>
+          <p class="nombre">${nombre}</p>
           <button class="voto">Votar</button>
-          
+          <span>Votos: <strong class="votos-texto">0</strong></span>
         </div>
       `;
     }
@@ -33,16 +37,15 @@ function funcionalidadBotones() {
   });
 }
 
-const contador = document.getElementById("contadorTotal");
-
 function votar(evento) {
   const partido = evento.target.parentElement;
   let votos = Number(partido.dataset.votos);
   votos++;
+  
   partido.dataset.votos = votos;
   
-
-  evento.target.textContent = `Votar: ${votos}`;
+  const textoVotos = partido.querySelector(".votos-texto");
+  textoVotos.innerText = `${votos}`;
   
   contadorTotal++;
   actualizarContador();
@@ -55,48 +58,64 @@ function actualizarContador() {
 
 function verificarGanador() {
   const partidos = document.querySelectorAll("[data-party]");
-  let maxVotos = -1;
-  let ganadorNombre = "";
+  maxVotosGlobal = 0;
+  ganadorNombreGlobal = "";
 
   partidos.forEach((partido) => {
-    const nombre = partido.querySelector("p").innerText;
     const votos = Number(partido.dataset.votos);
-    if (votos > maxVotos) {
-      maxVotos = votos;
-      ganadorNombre = nombre;
+    if (votos > maxVotosGlobal) {
+      maxVotosGlobal = votos;
     }
   });
 
-  if (maxVotos > 0) {
-    ganador.innerText = `Ganador: ${ganadorNombre} (${maxVotos} votes)`;
+  partidos.forEach((partido) => {
+    const nombre = partido.querySelector(".nombre").innerText;
+    const votos = Number(partido.dataset.votos);
+    
+    if (votos === maxVotosGlobal && maxVotosGlobal > 0) {
+      partido.dataset.win = "true";
+      ganadorNombreGlobal += ganadorNombreGlobal ? ` y ${nombre}` : nombre;
+    } else {
+      partido.dataset.win = "false";
+    }
+  });
+
+  if (maxVotosGlobal > 0) {
+    ganador.innerText = `Ganador: ${ganadorNombreGlobal} (${maxVotosGlobal} votos)`;
+  } else {
+    ganador.innerText = "Ganador: Ninguno";
   }
 }
 
 btnCerrar.addEventListener("click", function() {
-    const contCerrar = document.getElementById("modalCerrar");
-    partidos.style.dysplay = "block"
-    
-    contCerrar.innerHTML = `
-        <p>Cerrada la votación</p>
-        
-        <script>Ganador: ${ganadorNombre} (${maxVotos} votes)</script>;
-         
-      `;
+  contPartidos.classList.add("bloqueado");
   
+  modalCerrar.innerHTML = `
+      <div class="modal-contenido">
+        <h2>Votación Cerrada</h2>
+        <p>El ganador definitivo es: <strong>${ganadorNombreGlobal}</strong> con ${maxVotosGlobal} votos.</p>
+      </div>
+  `;
+  modalCerrar.style.display = "block";
 });
 
-
-btnReiniciar.addEventListener("click", function(){
+btnReiniciar.addEventListener("click", function() {
   const partidos = document.querySelectorAll("[data-party]");
+  
   partidos.forEach(partido => {
     partido.dataset.votos = "0";
-    const boton = partido.querySelector(".voto");
-    boton.textContent = "Votar";
+    partido.dataset.win = "false"; // Quitar el verde
+    const textoVotos = partido.querySelector(".votos-texto");
+    textoVotos.innerText = "0";
   });
   
   contadorTotal = 0;
-  maxVotos = -1;
-  ganadorNombre = "";
+  maxVotosGlobal = 0;
+  ganadorNombreGlobal = "Ninguno";
+  
   actualizarContador();
-  ganador.innerText = "";
+  ganador.innerText = "Ganador: Ninguno";
+  
+  contPartidos.classList.remove("bloqueado");
+  modalCerrar.style.display = "none";
 });
